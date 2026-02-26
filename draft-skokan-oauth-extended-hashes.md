@@ -9,16 +9,16 @@ number:
 date:
 consensus: true
 v: 3
-area: sec
-workgroup: oauth
+area: "Security"
+workgroup: "Web Authorization Protocol"
 keyword:
  - oauth
  - pkce
  - dpop
 venue:
-  group: oauth
-  type: Working Group
-  github: panva/oauth-extended-hashes
+  group: "Web Authorization Protocol"
+  type: "Working Group"
+  github: "panva/draft-oauth-extended-hashes"
 
 author:
  -
