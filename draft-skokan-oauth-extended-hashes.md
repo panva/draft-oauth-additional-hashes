@@ -19,35 +19,32 @@
 # Change the file extension to match the format (.xml for XML, etc...)
 #
 ###
-title: "TODO - Your title"
-abbrev: "TODO - Abbreviation"
-category: info
+title: "Extended Hash Algorithms for OAuth 2.0 Proof-of-Possession and PKCE"
+abbrev: "Extended Hashes for OAuth PoP and PKCE"
+category: std
 
-docname: draft-todo-yourname-protocol-latest
-submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
+docname: draft-skokan-oauth-extended-hashes-latest
+submissiontype: IETF
 number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: WG Working Group
+area: sec
+workgroup: oauth
 keyword:
- - next generation
- - unicorn
- - sparkling distributed ledger
+ - oauth
+ - pkce
+ - dpop
 venue:
-  group: WG
+  group: oauth
   type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+  github: panva/oauth-extended-hashes
 
 author:
  -
-    fullname: Your Name Here
-    organization: Your Organization Here
-    email: your.email@example.com
+    fullname: Filip Skokan
+    organization: Okta
+    email: panva.ip@gmail.com
 
 normative:
 
