@@ -59,8 +59,9 @@ informative:
 This document defines SHA-512 as an additional hash algorithm for
 OAuth 2.0 Proof Key for Code Exchange (PKCE), mutual-TLS
 certificate-bound access tokens, and Demonstrating Proof of
-Possession (DPoP). These mechanisms currently mandate the use of
-SHA-256.
+Possession (DPoP), for use in deployments operating under security
+policies that prohibit the use of SHA-256, which is otherwise
+mandated or the only option in these mechanisms.
 
 
 --- middle
@@ -78,7 +79,8 @@ require SHA-384 or SHA-512. This prevents the deployment of these
 OAuth 2.0 mechanisms in such environments.
 
 This document addresses this gap by defining SHA-512 alternatives
-for each of these mechanisms. For PKCE, a new `S512` code challenge
+for each of these mechanisms, for use in deployments operating
+under such constrained policies. For PKCE, a new `S512` code challenge
 method is defined. For mutual-TLS certificate-bound access tokens,
 a new `x5t#S512` confirmation method is defined. For DPoP, this
 document defines SHA-512 alternatives for the JWK Thumbprint
