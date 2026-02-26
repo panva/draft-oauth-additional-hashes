@@ -57,9 +57,10 @@ informative:
 --- abstract
 
 This document defines SHA-512 as an additional hash algorithm for
-OAuth 2.0 Proof Key for Code Exchange (PKCE), Demonstrating Proof
-of Possession (DPoP), and mutual-TLS certificate-bound access tokens.
-These mechanisms currently mandate the use of SHA-256.
+OAuth 2.0 Proof Key for Code Exchange (PKCE), mutual-TLS
+certificate-bound access tokens, and Demonstrating Proof of
+Possession (DPoP). These mechanisms currently mandate the use of
+SHA-256.
 
 
 --- middle
@@ -67,9 +68,9 @@ These mechanisms currently mandate the use of SHA-256.
 # Introduction
 
 Several OAuth 2.0 mechanisms exclusively mandate the use of SHA-256:
-Proof Key for Code Exchange (PKCE) {{RFC7636}}, Demonstrating Proof of
-Possession (DPoP) {{RFC9449}}, and mutual-TLS certificate-bound access
-tokens {{RFC8705}}.
+Proof Key for Code Exchange (PKCE) {{RFC7636}}, mutual-TLS
+certificate-bound access tokens {{RFC8705}}, and Demonstrating Proof
+of Possession (DPoP) {{RFC9449}}.
 
 Security policies, such as the US Commercial National Security
 Algorithm (CNSA 2.0) Suite {{cnsafaq}}, prohibit the use of SHA-256 and
@@ -82,7 +83,7 @@ method is defined. For mutual-TLS certificate-bound access tokens,
 a new `x5t#S512` confirmation method is defined. For DPoP, this
 document defines SHA-512 alternatives for the JWK Thumbprint
 confirmation method (`jkt#S512`) and the access token hash claim
-(`ath#S512`), as well as an extensible framework for DPoP
+(`ath#S512`), as well as an extensible framework for
 authorization code binding and access token hash algorithm
 negotiation.
 
@@ -102,8 +103,9 @@ All references to "CNSA 2.0" in this document refer to CNSA 2.0
 # Purpose and Scope
 
 The sole purpose of this document is to enable deployments operating
-under security policies that prohibit SHA-256 to use PKCE, DPoP,
-and mutual-TLS certificate-bound access tokens. In such constrained
+under security policies that prohibit SHA-256 to use PKCE,
+mutual-TLS certificate-bound access tokens, and DPoP. In such
+constrained
 deployments, the SHA-512 alternatives defined herein are used in
 place of their SHA-256 counterparts, since those deployments cannot
 use SHA-256 at all.
@@ -123,8 +125,8 @@ become necessary.
 # PKCE
 
 Proof Key for Code Exchange (PKCE) {{RFC7636}} defines `plain` and
-`S256` as code challenge
-methods, with `S256` being the only method that applies a
+`S256` as code challenge methods, with `S256` being the only method
+that applies a
 cryptographic hash to the code verifier. The specification
 establishes the "PKCE Code Challenge Methods" registry, which this
 document uses to register the `S512` code challenge method.
@@ -386,12 +388,13 @@ the code verifier that prevents an attacker who intercepts the
 authorization code from computing the code verifier needed to exchange
 it for tokens.
 
+The `x5t#S512` confirmation method provides the same structural
+security properties as `x5t#S256` defined in {{RFC8705}}.
+
 The `jkt#S512` confirmation method, `dpop_jkt` combined with
 `dpop_jkt_method` parameter, and `ath#S512` claim provide the same
 structural security properties as their SHA-256 counterparts
-defined in DPoP {{RFC9449}}. Similarly, the `x5t#S512` confirmation
-method provides the same structural security properties as
-`x5t#S256` defined in {{RFC8705}}.
+defined in DPoP {{RFC9449}}.
 
 SHA-512 provides a 256-bit collision resistance and 512-bit preimage
 resistance, exceeding the 128-bit and 256-bit levels provided by
