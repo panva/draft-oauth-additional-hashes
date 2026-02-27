@@ -4,8 +4,8 @@
 
 Web Authorization Protocol                                     F. Skokan
 Internet-Draft                                                      Okta
-Intended status: Standards Track                        26 February 2026
-Expires: 30 August 2026
+Intended status: Standards Track                        27 February 2026
+Expires: 31 August 2026
 
 
  Additional Hash Algorithms for OAuth 2.0 PKCE and Proof-of-Possession
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 August 2026.
+   This Internet-Draft will expire on 31 August 2026.
 
 Copyright Notice
 
@@ -175,16 +175,10 @@ Table of Contents
 4.2.  Authorization Server Metadata
 
    An Authorization Server that supports the S512 code challenge method
-   MUST advertise its support by including S512 in the
-   code_challenge_methods_supported metadata parameter value, as defined
-   in OAuth 2.0 Authorization Server Metadata [RFC8414] or OpenID
-   Connect Discovery 1.0 [OpenID.Discovery].
-
-   A Client intending to use the S512 code challenge method MUST first
-   confirm that the Authorization Server supports it by checking the
-   code_challenge_methods_supported metadata value.  A Client MUST NOT
-   use the S512 code challenge method if the Authorization Server does
-   not advertise support for it.
+   MUST advertise its support in its Authorization Server metadata
+   (e.g., [RFC8414] or [OpenID.Discovery]) by including S512 in the
+   code_challenge_methods_supported metadata parameter value as defined
+   in [RFC8414].
 
 5.  Mutual-TLS
 
@@ -294,12 +288,6 @@ Table of Contents
    An Authorization Server that supports dpop_jkt_method values beyond
    S256 MUST advertise its support by including the supported values in
    the dpop_jkt_methods_supported metadata parameter.
-
-   A Client intending to use a dpop_jkt_method value other than S256
-   MUST first confirm that the Authorization Server supports it by
-   checking the dpop_jkt_methods_supported metadata value.  A Client
-   MUST NOT use a dpop_jkt_method value that the Authorization Server
-   does not advertise support for.
 
 6.2.  SHA-512 Hash Algorithms
 
