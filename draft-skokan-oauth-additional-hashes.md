@@ -577,3 +577,35 @@ Specification Document(s):
 {:numbered="false"}
 
 TODO acknowledge.
+
+# Document History
+{:numbered="false"}
+
+draft-skokan-oauth-additional-hashes-03
+
+- Added Document History
+- Changed `ath_method` to `ath_methods` (plural, space-delimited list),
+  analogous to the `algs` parameter in {{Section 7.1 of RFC9449}}
+- Removed premature "in place of `ath`" language for `ath#S512`,
+  pending resolution of the dual-hash coexistence TODO
+
+draft-skokan-oauth-additional-hashes-02
+
+- Removed client-side MUST NOT requirements for using unadvertised
+  PKCE and DPoP authorization code binding methods
+
+draft-skokan-oauth-additional-hashes-01
+
+- Changed hash algorithm from SHA-384 to SHA-512
+- Added Purpose and Scope section
+- Added Mutual-TLS section with `x5t#S512` confirmation method
+  and `mtls_confirmation_methods_supported` RS metadata
+- Added `dpop_confirmation_methods_supported` RS metadata for DPoP
+- Added `WWW-Authenticate` challenge parameter for access token
+  hash method signalling
+- Added TODO notes for dual-hash coexistence questions
+- Expanded Security Considerations
+
+draft-skokan-oauth-additional-hashes-00
+
+- Initial draft
