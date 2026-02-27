@@ -149,16 +149,10 @@ The server-side verification of the code verifier follows
 ## Authorization Server Metadata {#as-metadata}
 
 An Authorization Server that supports the `S512` code challenge
-method MUST advertise its support by including `S512` in the
-`code_challenge_methods_supported` metadata parameter value, as
-defined in OAuth 2.0 Authorization Server Metadata {{RFC8414}} or
-OpenID Connect Discovery 1.0 {{OpenID.Discovery}}.
-
-A Client intending to use the `S512` code challenge method MUST
-first confirm that the Authorization Server supports it by checking
-the `code_challenge_methods_supported` metadata value. A Client MUST
-NOT use the `S512` code challenge method if the Authorization Server
-does not advertise support for it.
+method MUST advertise its support in its Authorization Server
+metadata (e.g., {{RFC8414}} or {{OpenID.Discovery}}) by including
+`S512` in the `code_challenge_methods_supported` metadata parameter
+value as defined in {{RFC8414}}.
 
 
 # Mutual-TLS {#mtls}
@@ -275,12 +269,6 @@ Server metadata parameter. Its value is a JSON array containing the
 An Authorization Server that supports `dpop_jkt_method` values
 beyond `S256` MUST advertise its support by including the supported
 values in the `dpop_jkt_methods_supported` metadata parameter.
-
-A Client intending to use a `dpop_jkt_method` value other than
-`S256` MUST first confirm that the Authorization Server supports it
-by checking the `dpop_jkt_methods_supported` metadata value. A
-Client MUST NOT use a `dpop_jkt_method` value that the Authorization
-Server does not advertise support for.
 
 
 ## SHA-512 Hash Algorithms
