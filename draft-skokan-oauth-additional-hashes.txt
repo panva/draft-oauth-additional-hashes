@@ -94,6 +94,7 @@ Table of Contents
      9.1.  Normative References
      9.2.  Informative References
    Acknowledgments
+   Document History
    Author's Address
 
 1.  Introduction
@@ -339,9 +340,6 @@ Table of Contents
    ath#S512:  The value is the base64url encoding of the SHA-512 hash of
       the ASCII encoding of the associated access token's value.
 
-   When used, ath#S512 is included in the DPoP proof JWT in place of
-   ath.
-
    [[TODO: Including both ath and ath#S512 in the same DPoP proof JWT
    would not represent hashes of two different access tokens but rather
    two different hash confirmations of the same access token.  This may
@@ -354,19 +352,21 @@ Table of Contents
    value in the DPoP proof JWT.  If the values do not match, the
    Resource Server MUST reject the request.
 
-   A Resource Server MAY signal the required access token hash method by
-   including the ath_method parameter in the WWW-Authenticate: DPoP
-   challenge.  The value of ath_method is the name of the claim the
-   Client MUST use: ath for SHA-256 or ath#S512 for SHA-512.  When
-   ath_method is absent, the Client MUST use ath.  Additionally,
-   Resource Server metadata for the supported access token hash methods
-   is defined in Section 6.2.3.
+   A Resource Server MAY signal the acceptable access token hash methods
+   by including the ath_methods parameter in the WWW-Authenticate: DPoP
+   challenge.  The value of ath_methods is a space-delimited list of
+   access token hash claim names that the Resource Server supports,
+   analogous to the algs parameter defined in Section 7.1 of [RFC9449].
+   When ath_methods is absent, the Client MUST use ath.  When
+   ath_methods is present, the Client MUST use one of the listed
+   methods.  Additionally, Resource Server metadata for the supported
+   access token hash methods is defined in Section 6.2.3.
 
    The following is a non-normative example of an HTTP response
    signalling the client to use ath#S512:
 
    HTTP/1.1 401 Unauthorized
-   WWW-Authenticate: DPoP algs="Ed25519", ath_method="ath#S512"
+   WWW-Authenticate: DPoP algs="Ed25519", ath_methods="ath#S512"
 
 6.2.3.  Resource Server Metadata
 
@@ -621,6 +621,45 @@ Table of Contents
 Acknowledgments
 
    TODO acknowledge.
+
+Document History
+
+   draft-skokan-oauth-additional-hashes-03
+
+   *  Added Document History
+
+   *  Changed ath_method to ath_methods (plural, space-delimited list),
+      analogous to the algs parameter in Section 7.1 of [RFC9449]
+
+   *  Removed premature "in place of ath" language for ath#S512, pending
+      resolution of the dual-hash coexistence TODO
+
+   draft-skokan-oauth-additional-hashes-02
+
+   *  Removed client-side MUST NOT requirements for using unadvertised
+      PKCE and DPoP authorization code binding methods
+
+   draft-skokan-oauth-additional-hashes-01
+
+   *  Changed hash algorithm from SHA-384 to SHA-512
+
+   *  Added Purpose and Scope section
+
+   *  Added Mutual-TLS section with x5t#S512 confirmation method and
+      mtls_confirmation_methods_supported RS metadata
+
+   *  Added dpop_confirmation_methods_supported RS metadata for DPoP
+
+   *  Added WWW-Authenticate challenge parameter for access token hash
+      method signalling
+
+   *  Added TODO notes for dual-hash coexistence questions
+
+   *  Expanded Security Considerations
+
+   draft-skokan-oauth-additional-hashes-00
+
+   *  Initial draft
 
 Author's Address
 

@@ -1258,7 +1258,10 @@ mandated or the only option in these mechanisms.<a href="#section-abstract-1" cl
             <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-document-history" class="internal xref">Document History</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-address" class="internal xref">Author's Address</a></p>
 </li>
         </ul>
 </nav>
@@ -1577,32 +1580,33 @@ the ASCII encoding of the associated access token's value.<a href="#section-6.2.
 </dd>
           <dd class="break"></dd>
 </dl>
-<p id="section-6.2.2-4">When used, <code>ath#S512</code> is included in the DPoP proof JWT in place
-of <code>ath</code>.<a href="#section-6.2.2-4" class="pilcrow">¶</a></p>
-<p id="section-6.2.2-5">[[TODO: Including both <code>ath</code> and <code>ath#S512</code> in the same DPoP proof
+<p id="section-6.2.2-4">[[TODO: Including both <code>ath</code> and <code>ath#S512</code> in the same DPoP proof
 JWT would not represent hashes of two different access tokens but
 rather two different hash confirmations of the same access token.
 This may actually be useful during a transition period in possible
 future non-constrained deployment scenarios. The working group
-should determine whether to prohibit or allow this.]]<a href="#section-6.2.2-5" class="pilcrow">¶</a></p>
-<p id="section-6.2.2-6">The Resource Server <span class="bcp14">MUST</span> compute the SHA-512 hash of the ASCII
+should determine whether to prohibit or allow this.]]<a href="#section-6.2.2-4" class="pilcrow">¶</a></p>
+<p id="section-6.2.2-5">The Resource Server <span class="bcp14">MUST</span> compute the SHA-512 hash of the ASCII
 encoding of the access token value and compare it with the
 <code>ath#S512</code> value in the DPoP proof JWT. If the values do not
-match, the Resource Server <span class="bcp14">MUST</span> reject the request.<a href="#section-6.2.2-6" class="pilcrow">¶</a></p>
-<p id="section-6.2.2-7">A Resource Server <span class="bcp14">MAY</span> signal the required access token hash method
-by including the <code>ath_method</code> parameter in the <code>WWW-Authenticate:
-DPoP</code> challenge. The value of <code>ath_method</code> is the name of the claim
-the Client <span class="bcp14">MUST</span> use: <code>ath</code> for SHA-256 or <code>ath#S512</code> for SHA-512.
-When <code>ath_method</code> is absent, the Client <span class="bcp14">MUST</span> use <code>ath</code>.
-Additionally, Resource Server metadata for the supported access
-token hash methods is defined in <a href="#dpop-rs-metadata" class="auto internal xref">Section 6.2.3</a>.<a href="#section-6.2.2-7" class="pilcrow">¶</a></p>
-<p id="section-6.2.2-8">The following is a non-normative example of an HTTP response
-signalling the client to use <code>ath#S512</code>:<a href="#section-6.2.2-8" class="pilcrow">¶</a></p>
-<div class="lang-http-message sourcecode" id="section-6.2.2-9">
+match, the Resource Server <span class="bcp14">MUST</span> reject the request.<a href="#section-6.2.2-5" class="pilcrow">¶</a></p>
+<p id="section-6.2.2-6">A Resource Server <span class="bcp14">MAY</span> signal the acceptable access token hash
+methods by including the <code>ath_methods</code> parameter in the
+<code>WWW-Authenticate: DPoP</code> challenge. The value of <code>ath_methods</code> is a
+space-delimited list of access token hash claim names that the
+Resource Server supports, analogous to the <code>algs</code> parameter defined
+in <span><a href="https://rfc-editor.org/rfc/rfc9449#section-7.1" class="relref">Section 7.1</a> of [<a href="#RFC9449" class="cite xref">RFC9449</a>]</span>. When <code>ath_methods</code> is absent, the
+Client <span class="bcp14">MUST</span> use <code>ath</code>. When <code>ath_methods</code> is present, the Client
+<span class="bcp14">MUST</span> use one of the listed methods. Additionally, Resource Server
+metadata for the supported access token hash methods is defined in
+<a href="#dpop-rs-metadata" class="auto internal xref">Section 6.2.3</a>.<a href="#section-6.2.2-6" class="pilcrow">¶</a></p>
+<p id="section-6.2.2-7">The following is a non-normative example of an HTTP response
+signalling the client to use <code>ath#S512</code>:<a href="#section-6.2.2-7" class="pilcrow">¶</a></p>
+<div class="lang-http-message sourcecode" id="section-6.2.2-8">
 <pre>
 HTTP/1.1 401 Unauthorized
-WWW-Authenticate: DPoP algs="Ed25519", ath_method="ath#S512"
-</pre><a href="#section-6.2.2-9" class="pilcrow">¶</a>
+WWW-Authenticate: DPoP algs="Ed25519", ath_methods="ath#S512"
+</pre><a href="#section-6.2.2-8" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
@@ -2052,8 +2056,68 @@ confirmation method names supported by the Resource Server<a href="#section-8.6-
 <p id="appendix-A-1">TODO acknowledge.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="authors-addresses">
+<div id="document-history">
 <section id="appendix-B">
+      <h2 id="name-document-history">
+<a href="#name-document-history" class="section-name selfRef">Document History</a>
+      </h2>
+<p id="appendix-B-1">draft-skokan-oauth-additional-hashes-03<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B-2.1">
+          <p id="appendix-B-2.1.1">Added Document History<a href="#appendix-B-2.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-2.2">
+          <p id="appendix-B-2.2.1">Changed <code>ath_method</code> to <code>ath_methods</code> (plural, space-delimited list),
+analogous to the <code>algs</code> parameter in <span><a href="https://rfc-editor.org/rfc/rfc9449#section-7.1" class="relref">Section 7.1</a> of [<a href="#RFC9449" class="cite xref">RFC9449</a>]</span><a href="#appendix-B-2.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-2.3">
+          <p id="appendix-B-2.3.1">Removed premature "in place of <code>ath</code>" language for <code>ath#S512</code>,
+pending resolution of the dual-hash coexistence TODO<a href="#appendix-B-2.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="appendix-B-3">draft-skokan-oauth-additional-hashes-02<a href="#appendix-B-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B-4.1">
+          <p id="appendix-B-4.1.1">Removed client-side <span class="bcp14">MUST NOT</span> requirements for using unadvertised
+PKCE and DPoP authorization code binding methods<a href="#appendix-B-4.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="appendix-B-5">draft-skokan-oauth-additional-hashes-01<a href="#appendix-B-5" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B-6.1">
+          <p id="appendix-B-6.1.1">Changed hash algorithm from SHA-384 to SHA-512<a href="#appendix-B-6.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.2">
+          <p id="appendix-B-6.2.1">Added Purpose and Scope section<a href="#appendix-B-6.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.3">
+          <p id="appendix-B-6.3.1">Added Mutual-TLS section with <code>x5t#S512</code> confirmation method
+and <code>mtls_confirmation_methods_supported</code> RS metadata<a href="#appendix-B-6.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.4">
+          <p id="appendix-B-6.4.1">Added <code>dpop_confirmation_methods_supported</code> RS metadata for DPoP<a href="#appendix-B-6.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.5">
+          <p id="appendix-B-6.5.1">Added <code>WWW-Authenticate</code> challenge parameter for access token
+hash method signalling<a href="#appendix-B-6.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.6">
+          <p id="appendix-B-6.6.1">Added TODO notes for dual-hash coexistence questions<a href="#appendix-B-6.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-6.7">
+          <p id="appendix-B-6.7.1">Expanded Security Considerations<a href="#appendix-B-6.7.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="appendix-B-7">draft-skokan-oauth-additional-hashes-00<a href="#appendix-B-7" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B-8.1">
+          <p id="appendix-B-8.1.1">Initial draft<a href="#appendix-B-8.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="appendix-C">
       <h2 id="name-authors-address">
 <a href="#name-authors-address" class="section-name selfRef">Author's Address</a>
       </h2>
