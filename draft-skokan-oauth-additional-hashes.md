@@ -335,20 +335,23 @@ encoding of the access token value and compare it with the
 `ath#S512` value in the DPoP proof JWT. If the values do not
 match, the Resource Server MUST reject the request.
 
-A Resource Server MAY signal the required access token hash method
-by including the `ath_method` parameter in the `WWW-Authenticate:
-DPoP` challenge. The value of `ath_method` is the name of the claim
-the Client MUST use: `ath` for SHA-256 or `ath#S512` for SHA-512.
-When `ath_method` is absent, the Client MUST use `ath`.
-Additionally, Resource Server metadata for the supported access
-token hash methods is defined in {{dpop-rs-metadata}}.
+A Resource Server MAY signal the acceptable access token hash
+methods by including the `ath_methods` parameter in the
+`WWW-Authenticate: DPoP` challenge. The value of `ath_methods` is a
+space-delimited list of access token hash claim names that the
+Resource Server supports, analogous to the `algs` parameter defined
+in {{Section 7.1 of RFC9449}}. When `ath_methods` is absent, the
+Client MUST use `ath`. When `ath_methods` is present, the Client
+MUST use one of the listed methods. Additionally, Resource Server
+metadata for the supported access token hash methods is defined in
+{{dpop-rs-metadata}}.
 
 The following is a non-normative example of an HTTP response
 signalling the client to use `ath#S512`:
 
 ~~~ http-message
 HTTP/1.1 401 Unauthorized
-WWW-Authenticate: DPoP algs="Ed25519", ath_method="ath#S512"
+WWW-Authenticate: DPoP algs="Ed25519", ath_methods="ath#S512"
 ~~~
 
 ### Resource Server Metadata {#dpop-rs-metadata}
