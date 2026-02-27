@@ -323,9 +323,6 @@ ath#S512:
 : The value is the base64url encoding of the SHA-512 hash of
   the ASCII encoding of the associated access token's value.
 
-When used, `ath#S512` is included in the DPoP proof JWT in place
-of `ath`.
-
 \[\[TODO: Including both `ath` and `ath#S512` in the same DPoP proof
 JWT would not represent hashes of two different access tokens but
 rather two different hash confirmations of the same access token.
