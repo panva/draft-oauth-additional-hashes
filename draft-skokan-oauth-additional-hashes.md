@@ -89,9 +89,11 @@ confirmation method (`jkt#S512`) and the access token hash claim
 authorization code binding and access token hash algorithm
 negotiation.
 
-\[\[TODO: The hash algorithm chosen by this document is
-currently SHA-512. The working group should determine whether to
-define SHA-384 or SHA-512.\]\]
+\[\[TODO:
+([#1](https://github.com/panva/draft-oauth-additional-hashes/issues/1))
+The hash algorithm chosen by this document is currently SHA-512.
+The working group should determine whether to define SHA-384 or
+SHA-512.\]\]
 
 
 # Conventions and Definitions
@@ -194,14 +196,16 @@ The choice of `x5t#S512` over `x5t#S256` is a deployment decision.
 It can be configured out of band or by the Authorization Server
 using the Resource Server's metadata ({{mtls-rs-metadata}}).
 
-\[\[TODO: {{Section 3.1 of RFC7800}} does not preclude
-the presence of both `x5t#S256` and `x5t#S512` in the same `cnf`
-claim. Including both would not represent confirmations for two
-different keys but rather two different hash confirmations of the
-same certificate. This may actually be useful during a transition
-period in possible future non-constrained deployment scenarios.
-The working group should determine whether to prohibit or allow
-this.\]\]
+\[\[TODO:
+([#2](https://github.com/panva/draft-oauth-additional-hashes/issues/2))
+{{Section 3.1 of RFC7800}} does not preclude the presence of
+both `x5t#S256` and `x5t#S512` in the same `cnf` claim.
+Including both would not represent confirmations for two
+different keys but rather two different hash confirmations of
+the same certificate. This may actually be useful during a
+transition period in possible future non-constrained deployment
+scenarios. The working group should determine whether to
+prohibit or allow this.\]\]
 
 ## Resource Server Metadata {#mtls-rs-metadata}
 
@@ -302,13 +306,16 @@ The choice of `jkt#S512` over `jkt` is a deployment decision. It
 can be configured out of band or by the Authorization Server using
 the Resource Server's metadata ({{dpop-rs-metadata}}).
 
-\[\[TODO: {{Section 3.1 of RFC7800}} does not preclude
-the presence of both `jkt` and `jkt#S512` in the same `cnf` claim.
-Including both would not represent confirmations for two different
-keys but rather two different hash confirmations of the same key.
-This may actually be useful during a transition period in possible
-future non-constrained deployment scenarios. The working group
-should determine whether to prohibit or allow this.\]\]
+\[\[TODO:
+([#2](https://github.com/panva/draft-oauth-additional-hashes/issues/2))
+{{Section 3.1 of RFC7800}} does not preclude the presence of
+both `jkt` and `jkt#S512` in the same `cnf` claim. Including
+both would not represent confirmations for two different keys
+but rather two different hash confirmations of the same key.
+This may actually be useful during a transition period in
+possible future non-constrained deployment scenarios. The
+working group should determine whether to prohibit or allow
+this.\]\]
 
 ### `ath#S512` Access Token Hash {#dpop-ath}
 
@@ -323,12 +330,15 @@ ath#S512:
 : The value is the base64url encoding of the SHA-512 hash of
   the ASCII encoding of the associated access token's value.
 
-\[\[TODO: Including both `ath` and `ath#S512` in the same DPoP proof
-JWT would not represent hashes of two different access tokens but
-rather two different hash confirmations of the same access token.
-This may actually be useful during a transition period in possible
-future non-constrained deployment scenarios. The working group
-should determine whether to prohibit or allow this.\]\]
+\[\[TODO:
+([#2](https://github.com/panva/draft-oauth-additional-hashes/issues/2))
+Including both `ath` and `ath#S512` in the same DPoP proof JWT
+would not represent hashes of two different access tokens but
+rather two different hash confirmations of the same access
+token. This may actually be useful during a transition period
+in possible future non-constrained deployment scenarios. The
+working group should determine whether to prohibit or allow
+this.\]\]
 
 The Resource Server MUST compute the SHA-512 hash of the ASCII
 encoding of the access token value and compare it with the
@@ -580,6 +590,10 @@ TODO acknowledge.
 
 # Document History
 {:numbered="false"}
+
+draft-skokan-oauth-additional-hashes-04
+
+- Opened issues for spec TODOs and inlined their links
 
 draft-skokan-oauth-additional-hashes-03
 
