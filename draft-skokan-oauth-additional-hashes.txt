@@ -4,8 +4,8 @@
 
 Web Authorization Protocol                                     F. Skokan
 Internet-Draft                                                      Okta
-Intended status: Standards Track                        27 February 2026
-Expires: 31 August 2026
+Intended status: Standards Track                        28 February 2026
+Expires: 1 September 2026
 
 
  Additional Hash Algorithms for OAuth 2.0 PKCE and Proof-of-Possession
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 August 2026.
+   This Internet-Draft will expire on 1 September 2026.
 
 Copyright Notice
 
@@ -119,9 +119,10 @@ Table of Contents
    as an extensible framework for authorization code binding and access
    token hash algorithm negotiation.
 
-   [[TODO: The hash algorithm chosen by this document is currently SHA-
-   512.  The working group should determine whether to define SHA-384 or
-   SHA-512.]]
+   [[TODO: (#1 (https://github.com/panva/draft-oauth-additional-hashes/
+   issues/1)) The hash algorithm chosen by this document is currently
+   SHA-512.  The working group should determine whether to define
+   SHA-384 or SHA-512.]]
 
 2.  Conventions and Definitions
 
@@ -218,7 +219,8 @@ Table of Contents
    can be configured out of band or by the Authorization Server using
    the Resource Server's metadata (Section 5.2).
 
-   [[TODO: Section 3.1 of [RFC7800] does not preclude the presence of
+   [[TODO: (#2 (https://github.com/panva/draft-oauth-additional-hashes/
+   issues/2)) Section 3.1 of [RFC7800] does not preclude the presence of
    both x5t#S256 and x5t#S512 in the same cnf claim.  Including both
    would not represent confirmations for two different keys but rather
    two different hash confirmations of the same certificate.  This may
@@ -320,7 +322,8 @@ Table of Contents
    configured out of band or by the Authorization Server using the
    Resource Server's metadata (Section 6.2.3).
 
-   [[TODO: Section 3.1 of [RFC7800] does not preclude the presence of
+   [[TODO: (#2 (https://github.com/panva/draft-oauth-additional-hashes/
+   issues/2)) Section 3.1 of [RFC7800] does not preclude the presence of
    both jkt and jkt#S512 in the same cnf claim.  Including both would
    not represent confirmations for two different keys but rather two
    different hash confirmations of the same key.  This may actually be
@@ -340,7 +343,8 @@ Table of Contents
    ath#S512:  The value is the base64url encoding of the SHA-512 hash of
       the ASCII encoding of the associated access token's value.
 
-   [[TODO: Including both ath and ath#S512 in the same DPoP proof JWT
+   [[TODO: (#2 (https://github.com/panva/draft-oauth-additional-hashes/
+   issues/2)) Including both ath and ath#S512 in the same DPoP proof JWT
    would not represent hashes of two different access tokens but rather
    two different hash confirmations of the same access token.  This may
    actually be useful during a transition period in possible future non-
@@ -623,6 +627,10 @@ Acknowledgments
    TODO acknowledge.
 
 Document History
+
+   draft-skokan-oauth-additional-hashes-04
+
+   *  Opened issues for spec TODOs and inlined their links
 
    draft-skokan-oauth-additional-hashes-03
 
