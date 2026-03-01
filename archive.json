@@ -1,0 +1,87 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2026-03-01T00:53:39.176646+00:00",
+  "repo": "panva/draft-oauth-additional-hashes",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDORZi7X87usAJX",
+      "title": "Hash algorithm choice: SHA-384 or SHA-512",
+      "url": "https://github.com/panva/draft-oauth-additional-hashes/issues/1",
+      "state": "OPEN",
+      "author": "panva",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "The hash algorithm chosen by this document is currently SHA-512. The working group should determine whether to define SHA-384 or SHA-512.\n\nThis TODO appears in the Introduction section of the spec.",
+      "createdAt": "2026-02-28T11:39:52Z",
+      "updatedAt": "2026-02-28T11:39:52Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 2,
+      "id": "I_kwDORZi7X87usA9X",
+      "title": "Dual-hash coexistence: allow or prohibit both old and new hash values simultaneously",
+      "url": "https://github.com/panva/draft-oauth-additional-hashes/issues/2",
+      "state": "OPEN",
+      "author": "panva",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Several places in the spec raise the question of whether both the existing (SHA-256-based) and new (SHA-512-based) hash values should be allowed to coexist simultaneously. This may be useful during transition periods but needs a clear decision.\n\nAffected areas:\n\n1. **mTLS certificate confirmation** - RFC 7800 Section 3.1 does not preclude the presence of both x5t#S256 and x5t#S512 in the same cnf claim. Including both would represent two different hash confirmations of the same certificate.\n\n2. **DPoP key confirmation** - Similarly, both jkt and jkt#S512 could appear in the same cnf claim as two different hash confirmations of the same key.\n\n3. **DPoP access token hash** - Both ath and ath#S512 could appear in the same DPoP proof JWT as two different hash confirmations of the same access token.\n\nThe working group should determine whether to prohibit or allow this coexistence in each case.\n",
+      "createdAt": "2026-02-28T11:42:23Z",
+      "updatedAt": "2026-02-28T11:42:23Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": []
+}
