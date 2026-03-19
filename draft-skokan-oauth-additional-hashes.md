@@ -379,6 +379,14 @@ dpop_access_token_hash_methods_supported:
   that the Resource Server supports. Defined values are `ath`
   and `ath#S512`. If omitted, the default is `["ath"]`.
 
+The `dpop_access_token_hash_methods_supported` metadata represents
+the static general capabilities of the Resource Server, while the
+`ath_methods` `WWW-Authenticate` challenge parameter serves as the
+runtime authoritative signal. When both are available to the Client,
+the values in `ath_methods` MUST be a subset of (or equal to) those
+in `dpop_access_token_hash_methods_supported`. When both are
+present, the `ath_methods` challenge parameter takes precedence.
+
 
 # Security Considerations
 
