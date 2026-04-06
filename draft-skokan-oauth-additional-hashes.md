@@ -28,6 +28,7 @@ author:
     email: panva.ip@gmail.com
 
 normative:
+  RFC6234:
   RFC7636:
   RFC7638:
   RFC8414:
@@ -100,6 +101,12 @@ SHA-512.\]\]
 
 {::boilerplate bcp14-tagged}
 
+The key words "BASE64URL-ENCODE", "ASCII", and "OCTETS" in this
+document are to be interpreted as described in {{Section 2 of
+RFC7636}}.
+
+SHA-512(OCTETS) denotes a SHA2 512-bit hash {{RFC6234}} of OCTETS.
+
 All references to "CNSA 2.0" in this document refer to CNSA 2.0
 {{cnsafaq}}, unless stated otherwise.
 
@@ -143,7 +150,7 @@ the code verifier by using the following transformation on the code
 verifier:
 
 S512:
-: code_challenge = BASE64URL(SHA-512(ASCII(code_verifier)))
+: code_challenge = BASE64URL-ENCODE(SHA-512(ASCII(code_verifier)))
 
 The server-side verification of the code verifier follows
 {{Section 4.6 of RFC7636}}, using SHA-512 as the hash algorithm.
