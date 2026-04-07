@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-03-22T00:50:46.687498+00:00",
+  "timestamp": "2026-04-07T00:53:35.787265+00:00",
   "repo": "panva/draft-oauth-additional-hashes",
   "labels": [
     {
@@ -95,15 +95,15 @@
       "id": "I_kwDORZi7X870UdtL",
       "title": "Notational Conventions",
       "url": "https://github.com/panva/draft-oauth-additional-hashes/issues/3",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "MichaelFraser99",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "In [Section 2](https://datatracker.ietf.org/doc/html/rfc7636#section-2) of PKCE, there is text defining the following:\n\n```\nSTRING denotes a sequence of zero or more ASCII [[RFC20](https://datatracker.ietf.org/doc/html/rfc20)] characters.\n\nOCTETS denotes a sequence of zero or more octets.\n\nASCII(STRING) denotes the octets of the ASCII [[RFC20](https://datatracker.ietf.org/doc/html/rfc20)] representation\nof STRING where STRING is a sequence of zero or more ASCII\ncharacters.\n\nBASE64URL-ENCODE(OCTETS) denotes the base64url encoding of OCTETS,\nper [Appendix A](https://datatracker.ietf.org/doc/html/rfc7636#appendix-A), producing a STRING.\n\nBASE64URL-DECODE(STRING) denotes the base64url decoding of STRING,\nper [Appendix A](https://datatracker.ietf.org/doc/html/rfc7636#appendix-A), producing a sequence of octets.\n\nSHA256(OCTETS) denotes a SHA2 256-bit hash [RFC6234](https://datatracker.ietf.org/doc/html/rfc6234) of OCTETS.\n```\n\nThis document should consider including an analogue. Suggested text:\n\n```\nThe key words \"BASE64URL-ENCODE\", \"ASCII\", and \"OCTETS\" in this document\nare to be interpreted as described in [RFC7636](https://datatracker.ietf.org/doc/html/rfc7636#section-2).\n\nSHA-512(OCTETS) denotes a SHA2 512-bit hash [RFC6234](https://datatracker.ietf.org/doc/html/rfc6234) of OCTETS.\n```\n\nFor this to work, the definition of S512 should be updated to:\n\n```text\nS512:  code_challenge = BASE64URL-ENCODE(SHA-512(ASCII(code_verifier)))\n```",
       "createdAt": "2026-03-19T03:15:23Z",
-      "updatedAt": "2026-03-19T03:15:23Z",
-      "closedAt": null,
+      "updatedAt": "2026-04-06T08:53:19Z",
+      "closedAt": "2026-04-06T08:53:19Z",
       "comments": []
     },
     {
@@ -111,15 +111,15 @@
       "id": "I_kwDORZi7X870U5Mw",
       "title": "Alignment between ath_methods and dpop_access_token_hash_methods_supported",
       "url": "https://github.com/panva/draft-oauth-additional-hashes/issues/4",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "MichaelFraser99",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "This document defines both `dpop_access_token_hash_methods_supported` and `ath_methods` as mechanisms of listing which access token has methods a given deployment supports. There is not however any text mandating they contain the same values. Is this intentional? \n\nIs there a valid scenario where a deployment may list `ath` and `ath#S512` in the `ath_methods` list while just specifying `ath#S512` within `dpop_access_token_hash_methods_supported`?",
       "createdAt": "2026-03-19T03:51:14Z",
-      "updatedAt": "2026-03-19T03:54:25Z",
-      "closedAt": null,
+      "updatedAt": "2026-04-06T08:53:03Z",
+      "closedAt": "2026-04-06T08:53:03Z",
       "comments": []
     },
     {
@@ -145,26 +145,42 @@
       "id": "PR_kwDORZi7X87LxyOc",
       "title": "add S512 PKCE related notational conventions",
       "url": "https://github.com/panva/draft-oauth-additional-hashes/pull/6",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "panva",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "Import BASE64URL-ENCODE, ASCII, and OCTETS notation from RFC 7636 Section 2, define SHA-512(OCTETS) citing RFC 6234, and update the S512 code challenge formula to use BASE64URL-ENCODE consistently.\r\n\r\nFixes #3\r\n\r\ncc @MichaelFraser99",
       "createdAt": "2026-03-19T08:10:45Z",
-      "updatedAt": "2026-03-19T08:10:45Z",
+      "updatedAt": "2026-04-06T08:53:22Z",
       "baseRepository": "panva/draft-oauth-additional-hashes",
       "baseRefName": "main",
       "baseRefOid": "0626c3f4f26ab70cce9966ddf109b3184e7b0a67",
       "headRepository": "panva/draft-oauth-additional-hashes",
       "headRefName": "issue-3",
       "headRefOid": "f61ab795dfb8993f093f92421021882ae099bd09",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-04-06T08:53:18Z",
+      "mergedAt": "2026-04-06T08:53:18Z",
+      "mergedBy": "panva",
+      "mergeCommit": {
+        "oid": "c63145fce191a0a71c11a7740d7e8c18379e89bf"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDORZi7X87x_H_d",
+          "commit": {
+            "abbreviatedOid": "f61ab79"
+          },
+          "author": "MichaelFraser99",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "Lgtm!",
+          "createdAt": "2026-04-05T21:31:15Z",
+          "updatedAt": "2026-04-05T21:31:15Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 7,
@@ -178,7 +194,7 @@
       "labels": [],
       "body": "Clarify ath_methods behavior when a Resource Server supports only ath#S512. A RS that does not support the default ath claim must now include ath_methods in WWW-Authenticate challenges. Clients may also use previously obtained RS metadata to determine the correct method when ath_methods is absent from the challenge.\r\n\r\nCloses #5\r\n\r\ncc @MichaelFraser99",
       "createdAt": "2026-03-19T08:22:13Z",
-      "updatedAt": "2026-03-19T08:22:13Z",
+      "updatedAt": "2026-04-05T21:52:25Z",
       "baseRepository": "panva/draft-oauth-additional-hashes",
       "baseRefName": "main",
       "baseRefOid": "0626c3f4f26ab70cce9966ddf109b3184e7b0a67",
@@ -190,33 +206,70 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDORZi7X87x_L0n",
+          "commit": {
+            "abbreviatedOid": "c1addda"
+          },
+          "author": "MichaelFraser99",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-04-05T21:52:25Z",
+          "updatedAt": "2026-04-05T21:52:25Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "The content is clear to me here. I do wonder if we can reduce the wordiness of it a bit:\n\nInstead of\n\n```\n... When `ath_methods`\nis absent and the Client has not obtained the Resource Server's\n`dpop_access_token_hash_methods_supported` metadata, the Client\nMUST use `ath`. When `ath_methods` is absent but the Client has\npreviously obtained the Resource Server's metadata, the Client\nMUST use a method from\n`dpop_access_token_hash_methods_supported`. ...\n```\n\nHow about\n\n```\n... When `ath_methods` is absent: \nIf the Client is aware of the Resource Server's \n`dpop_access_token_hash_methods_supported` metadata, the Client \nMUST use a method from that set. Otherwise, `ath` MUST be used.\n```\n\nJust to aid readability a little",
+              "createdAt": "2026-04-05T21:52:25Z",
+              "updatedAt": "2026-04-05T21:52:44Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 8,
       "id": "PR_kwDORZi7X87LyCI_",
       "title": "add consistency requirement between ath_methods and dpop_access_token_hash_methods_supported",
       "url": "https://github.com/panva/draft-oauth-additional-hashes/pull/8",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "panva",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "Clarify that dpop_access_token_hash_methods_supported represents static general capabilities while ath_methods serves as the runtime authoritative signal. Require ath_methods values to be a subset of dpop_access_token_hash_methods_supported.\r\n\r\nCloses #4\r\n\r\ncc @MichaelFraser99",
       "createdAt": "2026-03-19T08:29:50Z",
-      "updatedAt": "2026-03-19T08:29:50Z",
+      "updatedAt": "2026-04-06T08:53:04Z",
       "baseRepository": "panva/draft-oauth-additional-hashes",
       "baseRefName": "main",
       "baseRefOid": "0626c3f4f26ab70cce9966ddf109b3184e7b0a67",
       "headRepository": "panva/draft-oauth-additional-hashes",
       "headRefName": "issue-4",
       "headRefOid": "3e38c6071a39a5f831a15aa6e9d2a36195da99c4",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2026-04-06T08:53:02Z",
+      "mergedAt": "2026-04-06T08:53:02Z",
+      "mergedBy": "panva",
+      "mergeCommit": {
+        "oid": "606ae5d23d438c2fcbe255b1f80d580de0f2028b"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDORZi7X87x_NE6",
+          "commit": {
+            "abbreviatedOid": "3e38c60"
+          },
+          "author": "MichaelFraser99",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "lgtm",
+          "createdAt": "2026-04-05T21:59:00Z",
+          "updatedAt": "2026-04-05T21:59:00Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
