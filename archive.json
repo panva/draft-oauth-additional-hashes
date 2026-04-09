@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-04-07T00:53:35.787265+00:00",
+  "timestamp": "2026-04-09T00:44:54.912007+00:00",
   "repo": "panva/draft-oauth-additional-hashes",
   "labels": [
     {
@@ -127,15 +127,15 @@
       "id": "I_kwDORZi7X870VDld",
       "title": "Behaviour of the ath_methods property when a server supports ath#S512",
       "url": "https://github.com/panva/draft-oauth-additional-hashes/issues/5",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "MichaelFraser99",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "The text `When ath_methods is absent, the Client MUST use ath.` opens us up to the following scenario:\n\nTake a deployment that chooses to list `ath#S512` as an option in `dpop_access_token_hash_methods_supported` and then subsequently respond with a `WWW-Authenticate: DPoP challenge` in order to provide a nonce for the client to use and does NOT include the `ath_methods` parameter (its only marked as a MAY)\n\n```\nA Resource Server MAY signal the acceptable access token hash methods\n   by including the ath_methods parameter in the WWW-Authenticate: DPoP\n   challenge.\n```\n\nIn such a scenario, the client would then be expected to use `ath` instead per the above text. \n\nI suggest that we include some text requiring the presence of the `ath_methods` parameter in `WWW-Authenticate` challenges when an implementation supports `ath#S512`. Suggested text:\n\n```\nA Resource Server MAY signal the acceptable access token hash methods\n   by including the ath_methods parameter in the WWW-Authenticate: DPoP\n   challenge. When an implementation chooses to support `ath#S256`, \n   the `ath_methods` parameter MUST be used in the `WWW-Authenticate: DPoP` \n   challenge.\n```",
       "createdAt": "2026-03-19T04:05:14Z",
-      "updatedAt": "2026-03-19T04:05:14Z",
-      "closedAt": null,
+      "updatedAt": "2026-04-08T12:05:50Z",
+      "closedAt": "2026-04-08T12:05:50Z",
       "comments": []
     }
   ],
@@ -187,24 +187,26 @@
       "id": "PR_kwDORZi7X87Lx8DR",
       "title": "require ath_methods in challenges when RS does not support ath",
       "url": "https://github.com/panva/draft-oauth-additional-hashes/pull/7",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "panva",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "Clarify ath_methods behavior when a Resource Server supports only ath#S512. A RS that does not support the default ath claim must now include ath_methods in WWW-Authenticate challenges. Clients may also use previously obtained RS metadata to determine the correct method when ath_methods is absent from the challenge.\r\n\r\nCloses #5\r\n\r\ncc @MichaelFraser99",
       "createdAt": "2026-03-19T08:22:13Z",
-      "updatedAt": "2026-04-05T21:52:25Z",
+      "updatedAt": "2026-04-08T12:05:53Z",
       "baseRepository": "panva/draft-oauth-additional-hashes",
       "baseRefName": "main",
       "baseRefOid": "0626c3f4f26ab70cce9966ddf109b3184e7b0a67",
       "headRepository": "panva/draft-oauth-additional-hashes",
       "headRefName": "issue-5",
-      "headRefOid": "c1addda02e7f2bfc0d3eafbc380b2a3f23601ac3",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "4b93a20d942849e20af34c25933d9c034d74779c",
+      "closedAt": "2026-04-08T12:05:49Z",
+      "mergedAt": "2026-04-08T12:05:49Z",
+      "mergedBy": "panva",
+      "mergeCommit": {
+        "oid": "2ab13ab89d262c90663a880badc0356976ebb849"
+      },
       "comments": [],
       "reviews": [
         {
@@ -226,6 +228,19 @@
               "updatedAt": "2026-04-05T21:52:44Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDORZi7X87y4pD3",
+          "commit": {
+            "abbreviatedOid": "4b93a20"
+          },
+          "author": "MichaelFraser99",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "LGTM!",
+          "createdAt": "2026-04-08T12:04:55Z",
+          "updatedAt": "2026-04-08T12:04:55Z",
+          "comments": []
         }
       ]
     },
